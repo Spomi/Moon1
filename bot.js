@@ -228,7 +228,7 @@ if (message.content.startsWith(prefix + 'help')) {
 
 
 client.on('ready', () => {
-     client.user.setActivity("3help",{type: 'LISTENING'});
+     client.user.setActivity("1help",{type: 'LISTENING'});
 });
 
 client.on('message', message => {
