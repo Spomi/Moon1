@@ -207,7 +207,7 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`بدء تشغيل: **${song.title}**`);
 }
 
-let prefix = '3';
+let prefix = '1';
 
 client.on('message', message => {
 if (message.content.startsWith(prefix + 'help')) {
