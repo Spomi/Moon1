@@ -11,7 +11,7 @@ const youtube = new YouTube(GOOGLE_API_KEY);
 const queue = new Map();
 
 client.on('ready', () => {
-    console.log('I am ready!');
+    console.log('I am  ready!');
 });
 
 client.on('warn', console.warn);
@@ -207,8 +207,6 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`بدء تشغيل: **${song.title}**`);
 }
 
-let prefix = '1';
-
 
 
 client.on('message', message => {
@@ -220,6 +218,27 @@ client.on('message', message => {
     .catch(console.error);
   }
 });
+let prefix = '5';
+   client.on('message', message => {
+if (message.content.startsWith(prefix + 'help')) {
+	
+	if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(300));
+	let embed = new Discord.RichEmbed()
+ .setAuthor(`${message.author.tag}`, message.author.avatarURL)
+ .addField("**:musical_note:  اوامر الميوزك**","** **")
+ .addField(`**${prefix}play**`,"**لـ تشغيل لاغنيه**")
+ .addField(`**${prefix}vol**`,"**لرفع صوت لاغنيه**")
+ .addField(`**${prefix}stop**`,"**لـ اطفاء لاغنيه**")
+ .addField(`**${prefix}skip**`,"**لـ نخطي لاغنيه**")
+ .addField(`**${prefix}pause**`,"**لـ يهإيقآف الأغنية مؤقتا**")
+ .addField(`**${prefix}resume**`,"**لـ موآصلة الإغنية بعد إيقآفهآ مؤقتانيه**")
+ .setColor('RANDOM')
+	message.channel.sendEmbed(embed).then(m => m.delete(25000));
+
+}
+});
+
+
 client.on('ready', () => {
      client.user.setActivity("1help",{type: 'LISTENING'});
 });
@@ -246,27 +265,6 @@ if (message.content.startsWith(PREFIX + 'setname')) {
 if (message.content.startsWith(PREFIX + 'setavatar')) {
   client.user.setAvatar(argresult);
    message.channel.sendMessage(`Avatar Changed Successfully To **${argresult}**`);
-}
-});
-
-
-
-   client.on('message', message => {
-if (message.content.startsWith(prefix + 'help')) {
-	
-	if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(300));
-	let embed = new Discord.RichEmbed()
- .setAuthor(`${message.author.tag}`, message.author.avatarURL)
- .addField("**:musical_note:  اوامر الميوزك**","** **")
- .addField(`**${prefix}play**`,"**لـ تشغيل لاغنيه**")
- .addField(`**${prefix}vol**`,"**لرفع صوت لاغنيه**")
- .addField(`**${prefix}stop**`,"**لـ اطفاء لاغنيه**")
- .addField(`**${prefix}skip**`,"**لـ نخطي لاغنيه**")
- .addField(`**${prefix}pause**`,"**لـ يهإيقآف الأغنية مؤقتا**")
- .addField(`**${prefix}resume**`,"**لـ موآصلة الإغنية بعد إيقآفهآ مؤقتانيه**")
- .setColor('RANDOM')
-	message.channel.sendEmbed(embed).then(m => m.delete(25000));
-
 }
 });
 client.login(process.env.BOT_TOKEN);
